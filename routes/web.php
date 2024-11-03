@@ -14,16 +14,11 @@ use App\Http\Controllers\ItemController;
 |
 */
 
-
-
-Route::get('/', function () {
-    return view('home');
-});
-
 Route::get('/admin', function () {
     return view('admin');
 });
 
-Route::get('/items', [ItemController::class, 'index'])->name('items');
-
-Route::get('/item/{id}', [ItemController::class, 'show'])->name('item');
+Route::controller(ItemController::class)->group(function () {
+    Route::get('/', 'index')->name('item.all');
+    Route::get('/item/{id}', 'show')->name('item.show');
+});
