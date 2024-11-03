@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    private array $items = [
-        [   'id' => 0,
-            'name' => 'Item 1',
-            'price' => '10.00'
-        ],
-        [   'id' => 1,
-            'name' => 'Item 2',
-            'price' => '20.00'
-        ],
-        [   'id' => 2,
-            'name' => 'Item 3',
-            'price' => '30.00'
-        ],
-    ];
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('item.items', ['items' => $this->items]);
+        $items = Item::all();
+
+        return view('item.all', ['items' => $items]);
     }
 
     /**
@@ -50,13 +38,13 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        $item = $this->items[$id] ?? null;
+        $item = Item::find($id);
 
         if ($item) {
-            return view('item.item', ['id' => $id]);
+            return view('item.show', ['item' => $item]);
         }
 
-        return redirect()->route('items');
+        return redirect()->route('item.all');
     }
 
     /**
