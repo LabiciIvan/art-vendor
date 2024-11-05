@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreItemRequest;
 
 class ItemController extends Controller
 {
@@ -22,15 +23,30 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('item.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreItemRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $file = $request->file('photos');
+
+        $name = now()->format('Y-m-d_H-i-s') . '-' . $validated['name'] . '.jpg';
+
+        $path = $file->storeAs('uploads/', $name);
+
+        Item::create([
+            'name' => $validated['name'],
+            'price' => $validated['price'],
+            'description' => $validated['description'],
+            'photos' => $path,
+        ]);
+
+        return redirect()->route('item.all');
     }
 
     /**
