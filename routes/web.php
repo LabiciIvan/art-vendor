@@ -19,6 +19,12 @@ Route::get('/admin', function () {
 });
 
 Route::controller(ItemController::class)->group(function () {
+
     Route::get('/', 'index')->name('item.all');
+
     Route::get('/item/{id}', 'show')->name('item.show');
+
+    Route::get('/item', 'create')->name('item.create');
+
+    Route::post('/item', 'store')->name('item.store');
 });
