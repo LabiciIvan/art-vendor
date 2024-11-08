@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
@@ -18,6 +19,7 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
+
 Route::controller(ItemController::class)->group(function () {
 
     Route::get('/', 'index')->name('item.all');
@@ -27,4 +29,18 @@ Route::controller(ItemController::class)->group(function () {
     Route::get('/item', 'create')->name('item.create');
 
     Route::post('/item', 'store')->name('item.store');
+});
+
+
+Route::controller(AuthController::class)->group(function () {
+
+    Route::get('/register', 'showRegistrationForm')->name('auth.register.form');
+
+    Route::post('/register', 'registerUser')->name('register.user');
+
+    Route::get('/login', 'showLoginForm')->name('auth.login.form');
+
+    Route::post('/login', 'loginUser')->name('login.user');
+
+    Route::get('/logout', 'logoutUser')->name('logout.user');
 });
