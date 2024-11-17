@@ -17,7 +17,7 @@ use App\Http\Controllers\ItemController;
 
 Route::get('/admin', function () {
     return view('admin');
-})->middleware('auth', 'admin');
+})->name('admin.panel')->middleware('auth', 'admin');
 
 
 Route::controller(ItemController::class)->group(function () {
@@ -28,15 +28,15 @@ Route::controller(ItemController::class)->group(function () {
 
     Route::get('/item', 'create')->name('item.create')->middleware('auth', 'admin');
 
-    Route::post('/item', 'store')->name('item.store')->middleware('auth');
+    Route::post('/item', 'store')->name('item.store')->middleware('auth', 'admin');
 });
 
 
 Route::controller(AuthController::class)->group(function () {
 
-    Route::get('/register', 'showRegistrationForm')->name('auth.register.form')->middleware('guest');
+    Route::get('/register', 'showRegistrationForm')->name('auth.register.form')->middleware('auth', 'admin');
 
-    Route::post('/register', 'registerUser')->name('register.user')->middleware('guest');
+    Route::post('/register', 'registerUser')->name('register.user')->middleware('auth', 'admin');
 
     Route::get('/login', 'showLoginForm')->name('auth.login.form')->middleware('guest');
 
