@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <x-navigation-bar :isLoggedIn="Auth::check()"/>
+    <x-admin-navigation-bar />
     @yield('content')
 </body>
 </html>

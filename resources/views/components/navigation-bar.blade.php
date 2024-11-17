@@ -6,10 +6,12 @@
         <div>
             <a href="{{ route('auth.login.form') }}">Login</a>
         </div>
-        <div>
-            <a href="{{ route('auth.register.form') }}">Register</a>
-        </div>
     @elseif ($isLoggedIn)
+        @can('onlyAdmins', Auth::user())
+            <div>
+                <a href="{{ route('admin.panel') }}">Admin Panel</a>
+            </div>
+        @endcan
         <div>
             <a href="{{ route('logout.user') }}">Logout</a>
         </div>
