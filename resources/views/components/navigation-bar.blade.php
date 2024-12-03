@@ -2,6 +2,14 @@
     <div>
         <a href="{{ route('item.all') }}">Art Vendor</a>
     </div>
+    <div>
+        <a href="{{ route('cart.index') }}">
+            Cart
+            @session('cart')
+                {{ count($value) }} 
+            @endsession
+        </a>
+    </div>
     @if (!$isLoggedIn)
         <div>
             <a href="{{ route('auth.login.form') }}">Login</a>

@@ -1,4 +1,4 @@
-@extends('layouts.item')
+@extends('layouts.main')
 
 @section('content')
     <a href={{ route('item.all') }}>Back</a>
