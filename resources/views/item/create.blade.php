@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('content')
     <form method="POST" action="{{ route('item.store') }}" enctype="multipart/form-data">
@@ -13,6 +13,12 @@
         <label>Price</label>
         <input type="text" name="price" value="{{ old('price') }}"/>
         @error('price')
+            <p>{{ $message }}</p>
+        @enderror
+
+        <label>Quantity</label>
+        <input type="text" name="quantity" value="{{ old('quantity') }}"/>
+        @error('quantity')
             <p>{{ $message }}</p>
         @enderror
 

@@ -18,7 +18,8 @@ class ItemFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'price' => fake()->randomNumber(4, true),
+            'price' => fake()->randomNumber(2, true),
+            'quantity' => fake()->randomNumber(2, true),
             'description' => fake()->sentence(),
             'photos' => fake()->text,
         ];

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
@@ -44,3 +45,16 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('/logout', 'logoutUser')->name('logout.user')->middleware('auth');
 });
+
+
+Route::controller(CartController::class)->group(function () {
+
+    Route::get('/cart', 'index')->name('cart.index');
+
+    Route::post('/cart', 'store')->name('cart.store');
+
+    Route::delete('/cart/{id}', 'destroy')->name('cart.destroy');
+
+    Route::patch('/cart/{id}', 'update')->name('cart.update');
+});
+

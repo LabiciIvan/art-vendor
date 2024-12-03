@@ -1,4 +1,4 @@
-@extends('layouts.item')
+@extends('layouts.main')
 
 @section('content')
     @foreach ($items as $item)

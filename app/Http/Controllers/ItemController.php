@@ -43,6 +43,7 @@ class ItemController extends Controller
             'name' => $validated['name'],
             'price' => $validated['price'],
             'description' => $validated['description'],
+            'quantity' => $validated['quantity'],
             'photos' => $path,
         ]);
 
